@@ -75,12 +75,30 @@ Vagrant.configure("2") do |config|
         :server_root_password => 'rootpass',
         :server_debian_password => 'debpass',
         :server_repl_password => 'replpass'
+      },
+      'rs-application_php' => {
+        :application_name => 'example',
+        :local_settings_file => 'config/db.php',
+        :scm => {
+          :provider => 'git',
+          :revision => 'unified_php',
+          :repository => 'git://github.com/rightscale/examples.git'
+        },
+        :database => {
+          :provider => 'mysql',
+          :host => 'localhost',
+          :user => 'app_user',
+          :password => 'apppass',
+          :schema => 'app_test'
+        }
       }
     }
 
     chef.run_list = [
-      "recipe[apt::default]",
-      "recipe[rs-lamp]"
+      "recipe[apt]",
+      "recipe[rs-lamp]",
+      "recipe[rs-mysql::server]",
+      "recipe[rs-application_php]"
     ]
   end
 end
