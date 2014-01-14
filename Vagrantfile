@@ -71,10 +71,11 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.json = {
-      :mysql => {
+      'rs-mysql' => {
         :server_root_password => 'rootpass',
-        :server_debian_password => 'debpass',
-        :server_repl_password => 'replpass'
+        :application_username  => 'appuser',
+        :application_password => 'apppass',
+        :database_name => 'app_test'
       },
       'rs-application_php' => {
         :application_name => 'example',
@@ -87,7 +88,7 @@ Vagrant.configure("2") do |config|
         :database => {
           :provider => 'mysql',
           :host => 'localhost',
-          :user => 'app_user',
+          :user => 'appuser',
           :password => 'apppass',
           :schema => 'app_test'
         }
