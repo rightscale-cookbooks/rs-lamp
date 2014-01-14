@@ -17,6 +17,10 @@
 # limitations under the License.
 #
 
+marker 'recipe_start_rightscale' do
+  template 'rightscale_audit_entry.erb'
+end
+
 dump_file = "/usr/local/www/sites/#{node['rs-application_php']['application_name']}/current/#{node['rs-lamp']['dump_file']}"
 
 if dump_file
