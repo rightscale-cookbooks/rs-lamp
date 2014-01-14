@@ -29,6 +29,7 @@ suites:
   - recipe[rs-lamp]
   - recipe[rs-mysql::server]
   - recipe[rs-application_php]
+  - recipe[rs-lamp::dump_import]
   - recipe[curl]
   attributes:
     rs-mysql:
@@ -39,7 +40,6 @@ suites:
       database_name: app_test
     rs-application_php:
       application_name: example
-      dump_file: app_test.sql.gz
       local_settings_file: config/db.php
       scm:
         provider: git
@@ -51,3 +51,5 @@ suites:
         user: appuser
         password: apppass
         schema: app_test
+    rs-lamp:
+      dump_file: app_test.sql.gz
