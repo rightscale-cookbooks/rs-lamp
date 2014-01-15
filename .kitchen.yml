@@ -43,7 +43,37 @@ suites:
       local_settings_file: config/db.php
       scm:
         provider: git
-        revision: unified_php
+        revision: white_14_01_acu145262_unified_php_different_compression_etc
+        repository: git://github.com/rightscale/examples.git
+      database:
+        provider: mysql
+        host: localhost
+        user: appuser
+        password: apppass
+        schema: app_test
+    rs-lamp:
+      dump_file: app_test.sql
+
+- name: dump_import_gz
+  run_list:
+  - recipe[rs-lamp]
+  - recipe[rs-mysql::server]
+  - recipe[rs-application_php]
+  - recipe[rs-lamp::dump_import]
+  - recipe[curl]
+  attributes:
+    rs-mysql:
+      server_root_password: rootpass
+      server_usage: dedicated
+      application_username: appuser
+      application_password: apppass
+      database_name: app_test
+    rs-application_php:
+      application_name: example
+      local_settings_file: config/db.php
+      scm:
+        provider: git
+        revision: white_14_01_acu145262_unified_php_different_compression_etc
         repository: git://github.com/rightscale/examples.git
       database:
         provider: mysql
@@ -53,3 +83,63 @@ suites:
         schema: app_test
     rs-lamp:
       dump_file: app_test.sql.gz
+
+- name: dump_import_bz2
+  run_list:
+  - recipe[rs-lamp]
+  - recipe[rs-mysql::server]
+  - recipe[rs-application_php]
+  - recipe[rs-lamp::dump_import]
+  - recipe[curl]
+  attributes:
+    rs-mysql:
+      server_root_password: rootpass
+      server_usage: dedicated
+      application_username: appuser
+      application_password: apppass
+      database_name: app_test
+    rs-application_php:
+      application_name: example
+      local_settings_file: config/db.php
+      scm:
+        provider: git
+        revision: white_14_01_acu145262_unified_php_different_compression_etc
+        repository: git://github.com/rightscale/examples.git
+      database:
+        provider: mysql
+        host: localhost
+        user: appuser
+        password: apppass
+        schema: app_test
+    rs-lamp:
+      dump_file: app_test.sql.bz2
+
+- name: dump_import_xz
+  run_list:
+  - recipe[rs-lamp]
+  - recipe[rs-mysql::server]
+  - recipe[rs-application_php]
+  - recipe[rs-lamp::dump_import]
+  - recipe[curl]
+  attributes:
+    rs-mysql:
+      server_root_password: rootpass
+      server_usage: dedicated
+      application_username: appuser
+      application_password: apppass
+      database_name: app_test
+    rs-application_php:
+      application_name: example
+      local_settings_file: config/db.php
+      scm:
+        provider: git
+        revision: white_14_01_acu145262_unified_php_different_compression_etc
+        repository: git://github.com/rightscale/examples.git
+      database:
+        provider: mysql
+        host: localhost
+        user: appuser
+        password: apppass
+        schema: app_test
+    rs-lamp:
+      dump_file: app_test.sql.xz
