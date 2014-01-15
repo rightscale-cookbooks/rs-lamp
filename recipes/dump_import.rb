@@ -31,8 +31,6 @@ if dump_file
     uncompress_command = "bunzip2 --stdout '#{dump_file}'"
   when /\.xz$/
     uncompress_command = "xz --decompress --stdout '#{dump_file}'"
-  else
-    uncompress_command += " < '#{dump_file}'"
   end
 
   # The connection hash to use to connect to mysql
@@ -46,9 +44,13 @@ if dump_file
   mysql_database node['rs-mysql']['database_name'] do
     connection mysql_connection_info
     sql do
-      uncompress = Mixlib::ShellOut.new(uncompress_command).run_command
-      uncompress.error!
-      uncompress.stdout
+      if uncompress_command
+        uncompress = Mixlib::ShellOut.new(uncompress_command).run_command
+        uncompress.error!
+        uncompress.stdout
+      else
+        ::File.read(dump_file)
+      end
     end
     action :query
   end
