@@ -22,36 +22,53 @@ marker 'recipe_start_rightscale' do
 end
 
 dump_file = "/usr/local/www/sites/#{node['rs-application_php']['application_name']}/current/#{node['rs-lamp']['dump_file']}"
+touch_file = "/var/lib/rightscale/rs-lamp-#{::File.basename(dump_file)}.touch"
 
 if dump_file
-  case dump_file
-  when /\.gz$/
-    uncompress_command = "gunzip --stdout '#{dump_file}'"
-  when /\.bz2$/
-    uncompress_command = "bunzip2 --stdout '#{dump_file}'"
-  when /\.xz$/
-    uncompress_command = "xz --decompress --stdout '#{dump_file}'"
-  end
-
-  # The connection hash to use to connect to MySQL
-  mysql_connection_info = {
-    :host => 'localhost',
-    :username => 'root',
-    :password => node['rs-mysql']['server_root_password']
-  }
-
-  # Import from MySQL dump
-  mysql_database node['rs-mysql']['database_name'] do
-    connection mysql_connection_info
-    sql do
-      if uncompress_command
-        uncompress = Mixlib::ShellOut.new(uncompress_command).run_command
-        uncompress.error!
-        uncompress.stdout
-      else
-        ::File.read(dump_file)
-      end
+  if ::File.exists?(touch_file)
+    log "The dump file was already imported at #{::File.ctime(touch_file)}"
+  else
+    case dump_file
+    when /\.gz$/
+      uncompress_command = "gunzip --stdout '#{dump_file}'"
+    when /\.bz2$/
+      uncompress_command = "bunzip2 --stdout '#{dump_file}'"
+    when /\.xz$/
+      uncompress_command = "xz --decompress --stdout '#{dump_file}'"
     end
-    action :query
+
+    # The connection hash to use to connect to MySQL
+    mysql_connection_info = {
+      :host => 'localhost',
+      :username => 'root',
+      :password => node['rs-mysql']['server_root_password']
+    }
+
+    # Import from MySQL dump
+    mysql_database node['rs-mysql']['database_name'] do
+      connection mysql_connection_info
+      sql do
+        if uncompress_command
+          uncompress = Mixlib::ShellOut.new(uncompress_command).run_command
+          uncompress.error!
+          uncompress.stdout
+        else
+          ::File.read(dump_file)
+        end
+      end
+      action :query
+    end
+
+    # Make sure directory /var/lib/rightscale exists which will contain the touch file
+    directory '/var/lib/rightscale' do
+      mode 0755
+      action :create
+    end
+
+    # Create a touch file containing the name of the dump file so this action can be skipped if the
+    # recipe is run with the same input multiple times.
+    file touch_file do
+      action :touch
+    end
   end
 end
