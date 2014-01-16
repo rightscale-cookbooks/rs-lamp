@@ -15,6 +15,6 @@ recipe 'rs-lamp::dump_import', 'Imports a database dumpfile'
 
 attribute 'rs-lamp/dump_file',
   :display_name => 'Dump File',
-  :description => 'The path relative to the repository root of a MySQL database dump file to be imported. Example: app_test.sql.gz',
+  :description => 'The path relative to the repository root of a MySQL database dump file to be imported. This file can be comressed using gzip, bzip2, xz or a plain text file. Example: mydb.sql.gz',
   :required => 'optional',
   :recipes => ['rs-lamp::dump_import']
