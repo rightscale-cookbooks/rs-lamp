@@ -25,7 +25,7 @@ and `rs-application_php::default` recipes in that order.
 
 Example runlist: `["rs-lamp::default", "rs-mysql::server", "rs-application_php::default"]`
 
-To import a dump after the setup, place the `rs-lamp::dump_import` recipe in the runlist after the recipes
+To import a MySQL database dump after the setup, place the `rs-lamp::dump_import` recipe in the runlist after the recipes
 mentioned above and set the `rs-lamp/dump_file` input. This input should be the location of the dump file relative
 to the root of the repository.
 

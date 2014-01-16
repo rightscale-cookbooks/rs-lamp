@@ -33,7 +33,7 @@ if dump_file
     uncompress_command = "xz --decompress --stdout '#{dump_file}'"
   end
 
-  # The connection hash to use to connect to mysql
+  # The connection hash to use to connect to MySQL
   mysql_connection_info = {
     :host => 'localhost',
     :username => 'root',

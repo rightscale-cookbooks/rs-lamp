@@ -18,5 +18,4 @@
 #
 
 # The path relative to the repository root of a MySQL database dump file to be imported.
-#
 default['rs-lamp']['dump_file'] = nil
