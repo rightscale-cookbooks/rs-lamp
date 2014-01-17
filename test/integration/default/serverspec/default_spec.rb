@@ -79,3 +79,7 @@ end
 describe command('curl --silent --location http://localhost/dbread') do
   it { should return_stdout /I am in the db/ }
 end
+
+describe file("/var/lib/rightscale/rs-lamp-app_test.sql.touch") do
+  it { should be_file }
+end

@@ -37,7 +37,7 @@ suites:
       server_usage: dedicated
       application_username: appuser
       application_password: apppass
-      database_name: app_test
+      application_database_name: app_test
     rs-application_php:
       application_name: example
       local_settings_file: config/db.php
@@ -67,7 +67,7 @@ suites:
       server_usage: dedicated
       application_username: appuser
       application_password: apppass
-      database_name: app_test
+      application_database_name: app_test
     rs-application_php:
       application_name: example
       local_settings_file: config/db.php
@@ -97,7 +97,7 @@ suites:
       server_usage: dedicated
       application_username: appuser
       application_password: apppass
-      database_name: app_test
+      application_database_name: app_test
     rs-application_php:
       application_name: example
       local_settings_file: config/db.php
@@ -127,7 +127,7 @@ suites:
       server_usage: dedicated
       application_username: appuser
       application_password: apppass
-      database_name: app_test
+      application_database_name: app_test
     rs-application_php:
       application_name: example
       local_settings_file: config/db.php

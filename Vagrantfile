@@ -75,7 +75,7 @@ Vagrant.configure("2") do |config|
         :server_root_password => 'rootpass',
         :application_username  => 'appuser',
         :application_password => 'apppass',
-        :database_name => 'app_test'
+        :application_database_name => 'app_test'
       },
       'rs-application_php' => {
         :application_name => 'example',
