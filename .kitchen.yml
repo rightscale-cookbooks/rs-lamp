@@ -43,7 +43,7 @@ suites:
       local_settings_file: config/db.php
       scm:
         provider: git
-        revision: white_14_01_acu145262_unified_php_different_compression_etc
+        revision: unified_php
         repository: git://github.com/rightscale/examples.git
       database:
         provider: mysql
@@ -73,7 +73,7 @@ suites:
       local_settings_file: config/db.php
       scm:
         provider: git
-        revision: white_14_01_acu145262_unified_php_different_compression_etc
+        revision: unified_php
         repository: git://github.com/rightscale/examples.git
       database:
         provider: mysql
@@ -103,7 +103,7 @@ suites:
       local_settings_file: config/db.php
       scm:
         provider: git
-        revision: white_14_01_acu145262_unified_php_different_compression_etc
+        revision: unified_php
         repository: git://github.com/rightscale/examples.git
       database:
         provider: mysql
@@ -133,7 +133,7 @@ suites:
       local_settings_file: config/db.php
       scm:
         provider: git
-        revision: white_14_01_acu145262_unified_php_different_compression_etc
+        revision: unified_php
         repository: git://github.com/rightscale/examples.git
       database:
         provider: mysql
