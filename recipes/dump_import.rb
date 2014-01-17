@@ -21,10 +21,12 @@ marker 'recipe_start_rightscale' do
   template 'rightscale_audit_entry.erb'
 end
 
-dump_file = "/usr/local/www/sites/#{node['rs-application_php']['application_name']}/current/#{node['rs-lamp']['dump_file']}"
-touch_file = "/var/lib/rightscale/rs-lamp-#{::File.basename(dump_file)}.touch"
+dump_file = node['rs-lamp']['dump_file']
 
-if dump_file
+if dump_file && !dump_file.empty?
+  dump_file = "/usr/local/www/sites/#{node['rs-application_php']['application_name']}/current/#{dump_file}"
+  touch_file = "/var/lib/rightscale/rs-lamp-#{::File.basename(dump_file)}.touch"
+
   if ::File.exists?(touch_file)
     log "The dump file was already imported at #{::File.ctime(touch_file)}"
   else
