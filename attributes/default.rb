@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: rs-lamp
-# Recipe:: default
+# Attribute:: default
 #
 # Copyright (C) 2014 RightScale, Inc.
 #
@@ -17,18 +17,5 @@
 # limitations under the License.
 #
 
-marker 'recipe_start_rightscale' do
-  template 'rightscale_audit_entry.erb'
-end
-
-log "Overriding rs-mysql/server_usage to 'shared'"
-node.override['rs-mysql']['server_usage'] = 'shared'
-
-log "Overriding mysql/bind_address to 'localhost'"
-node.override['mysql']['bind_address'] = 'localhost'
-
-log "Overriding rs-application_php/database/host to 'localhost'"
-node.override['rs-application_php']['database']['host'] = 'localhost'
-
-log "Overriding rs-application_php/listen_php to 80"
-node.override['rs-application_php']['listen_port'] = 80
+# The path relative to the repository root of a MySQL database dump file to be imported.
+default['rs-lamp']['dump_file'] = nil
