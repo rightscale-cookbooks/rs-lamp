@@ -27,17 +27,10 @@ suites:
 - name: default
   run_list:
   - recipe[rs-lamp]
-  - recipe[rs-mysql::server]
   - recipe[rs-application_php]
   - recipe[rs-lamp::dump_import]
   - recipe[curl]
   attributes:
-    rs-mysql:
-      server_root_password: rootpass
-      server_usage: dedicated
-      application_username: appuser
-      application_password: apppass
-      application_database_name: app_test
     rs-application_php:
       application_name: example
       local_settings_file: config/db.php
@@ -53,21 +46,15 @@ suites:
         schema: app_test
     rs-lamp:
       dump_file: app_test.sql
+      mysql_root_password: rootpass
 
 - name: dump_import_gz
   run_list:
   - recipe[rs-lamp]
-  - recipe[rs-mysql::server]
   - recipe[rs-application_php]
   - recipe[rs-lamp::dump_import]
   - recipe[curl]
   attributes:
-    rs-mysql:
-      server_root_password: rootpass
-      server_usage: dedicated
-      application_username: appuser
-      application_password: apppass
-      application_database_name: app_test
     rs-application_php:
       application_name: example
       local_settings_file: config/db.php
@@ -83,21 +70,15 @@ suites:
         schema: app_test
     rs-lamp:
       dump_file: app_test.sql.gz
+      mysql_root_password: rootpass
 
 - name: dump_import_bz2
   run_list:
   - recipe[rs-lamp]
-  - recipe[rs-mysql::server]
   - recipe[rs-application_php]
   - recipe[rs-lamp::dump_import]
   - recipe[curl]
   attributes:
-    rs-mysql:
-      server_root_password: rootpass
-      server_usage: dedicated
-      application_username: appuser
-      application_password: apppass
-      application_database_name: app_test
     rs-application_php:
       application_name: example
       local_settings_file: config/db.php
@@ -113,21 +94,15 @@ suites:
         schema: app_test
     rs-lamp:
       dump_file: app_test.sql.bz2
+      mysql_root_password: rootpass
 
 - name: dump_import_xz
   run_list:
   - recipe[rs-lamp]
-  - recipe[rs-mysql::server]
   - recipe[rs-application_php]
   - recipe[rs-lamp::dump_import]
   - recipe[curl]
   attributes:
-    rs-mysql:
-      server_root_password: rootpass
-      server_usage: dedicated
-      application_username: appuser
-      application_password: apppass
-      application_database_name: app_test
     rs-application_php:
       application_name: example
       local_settings_file: config/db.php
@@ -143,3 +118,4 @@ suites:
         schema: app_test
     rs-lamp:
       dump_file: app_test.sql.xz
+      mysql_root_password: rootpass

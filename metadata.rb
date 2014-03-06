@@ -18,3 +18,17 @@ attribute 'rs-lamp/dump_file',
   :description => 'The path relative to the repository root of a MySQL database dump file to be imported. This file can be compressed using gzip, bzip2, xz or a plain text file. Example: mydb.sql.gz',
   :required => 'optional',
   :recipes => ['rs-lamp::dump_import']
+
+attribute 'rs-lamp/mysql_root_password',
+  :display_name => 'MySQL Server Root Password',
+  :description => 'The root password for MySQL server. Example: cred:MYSQL_ROOT_PASSWORD',
+  :required => 'required',
+  :recipes => ['rs-lamp::default']
+
+attribute 'rs-lamp/mysql_user_privileges',
+  :display_name => 'MySQL User Privileges',
+  :description => 'The privileges given to the MySQL application user. This can be an array of mysql privilege types.' +
+    ' Example: select, update, insert',
+  :required => 'optional',
+  :type => 'array',
+  :recipes => ['rs-lamp::default']
