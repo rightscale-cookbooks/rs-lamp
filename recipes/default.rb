@@ -27,6 +27,23 @@ node.override['rs-mysql']['server_usage'] = 'shared'
 log "Overriding mysql/bind_address to 'localhost'"
 node.override['mysql']['bind_address'] = 'localhost'
 
+log 'Overriding rs-mysql/server_root_password to rs-lamp/mysql_root_password'
+node.override['rs-mysql']['server_root_password'] = node['rs-lamp']['mysql_root_password']
+
+log 'Overriding rs-mysql/application_username to rs-application_php/database/user'
+node.override['rs-mysql']['application_username'] = node['rs-application_php']['database']['user']
+
+log 'Overriding rs-mysql/application_password to rs-application_php/database/password'
+node.override['rs-mysql']['application_password'] = node['rs-application_php']['database']['password']
+
+log 'Overriding rs-mysql/application_database_name to rs-application_php/database/schema'
+node.override['rs-mysql']['application_database_name'] = node['rs-application_php']['database']['schema']
+
+log 'Overriding rs-mysql/application_user_privileges to rs-lamp/mysql_user_privileges'
+node.override['rs-mysql']['application_user_privileges'] = node['rs-lamp']['mysql_user_privileges']
+
+include_recipe 'rs-mysql::server'
+
 log "Overriding rs-application_php/database/host to 'localhost'"
 node.override['rs-application_php']['database']['host'] = 'localhost'
 
