@@ -21,14 +21,14 @@ marker 'recipe_start_rightscale' do
   template 'rightscale_audit_entry.erb'
 end
 
-Chef::Log "Overriding rs-mysql/server_usage to 'shared'"
+Chef::Log.info "Overriding rs-mysql/server_usage to 'shared'"
 node.override['rs-mysql']['server_usage'] = 'shared'
 
-Chef::Log "Overriding mysql/bind_address to 'localhost'"
+Chef::Log.info "Overriding mysql/bind_address to 'localhost'"
 node.override['mysql']['bind_address'] = 'localhost'
 
-Chef::Log "Overriding rs-application_php/database/host to 'localhost'"
+Chef::Log.info "Overriding rs-application_php/database/host to 'localhost'"
 node.override['rs-application_php']['database']['host'] = 'localhost'
 
-Chef::Log "Overriding rs-application_php/listen_php to 80"
+Chef::Log.info "Overriding rs-application_php/listen_php to 80"
 node.override['rs-application_php']['listen_port'] = 80
