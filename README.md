@@ -4,7 +4,7 @@
 
 Sets up an all-in-one LAMP server with Apache with PHP using MySQL database.
 
-Github Repository: https://github.com/rightscale-cookbooks/rs-lamp
+Github Repository: [https://github.com/rightscale-cookbooks/rs-lamp](https://github.com/rightscale-cookbooks/rs-lamp)
 
 # Requirements
 
