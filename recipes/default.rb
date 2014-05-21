@@ -41,5 +41,5 @@ node.override['rs-application_php']['database']['host'] = 'localhost'
 Chef::Log.info "Overriding rs-application_php/listen_php to 80"
 node.override['rs-application_php']['listen_port'] = 80
 
-Chef::Log.info "Overriding rs-application_php/application_name to 'lamp-application'"
-node.override['rs-application_php']['application_name'] = 'lamp-application'
+Chef::Log.info "Overriding rs-application_php/application_name to 'lamp_application'"
+node.override['rs-application_php']['application_name'] = 'lamp_application'
