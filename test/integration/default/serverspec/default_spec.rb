@@ -64,15 +64,15 @@ describe command('curl --silent --location http://localhost/appserver') do
 end
 
 describe 'Database configuration file is created with correct settings' do
-  describe file('/usr/local/www/sites/example/shared/db.php') do
+  describe file('/usr/local/www/sites/lamp_application/shared/db.php') do
     it { should be_file }
     it { should contain '$hostname_DB = "localhost";' }
     it { should contain '$username_DB = "appuser";' }
     it { should contain '$password_DB = "apppass";' }
     it { should contain '$database_DB = "app_test";' }
   end
-  describe file('/usr/local/www/sites/example/current/config/db.php') do
-    it { should be_linked_to '/usr/local/www/sites/example/shared/db.php' }
+  describe file('/usr/local/www/sites/lamp_application/current/config/db.php') do
+    it { should be_linked_to '/usr/local/www/sites/lamp_application/shared/db.php' }
   end
 end
 

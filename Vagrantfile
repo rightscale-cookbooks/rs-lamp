@@ -78,7 +78,7 @@ Vagrant.configure("2") do |config|
         :application_database_name => 'app_test'
       },
       'rs-application_php' => {
-        :application_name => 'example',
+        :application_name => 'lamp_application',
         :local_settings_file => 'config/db.php',
         :scm => {
           :provider => 'git',
