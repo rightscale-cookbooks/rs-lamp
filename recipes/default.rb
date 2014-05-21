@@ -43,8 +43,3 @@ node.override['rs-application_php']['listen_port'] = 80
 
 Chef::Log.info "Overriding rs-application_php/application_name to 'lamp-application'"
 node.override['rs-application_php']['application_name'] = 'lamp-application'
-
-# LAMP does not have a database replication feature.
-# However, this attribute is required by mysql::server which is called from rs-mysql::default.
-Chef::Log.info "Overriding rs-mysql/server_repl_password to 'not_applicable'"
-node.override['rs-mysql']['server_repl_password'] = 'not_applicable'
