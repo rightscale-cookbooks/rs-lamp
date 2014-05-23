@@ -32,8 +32,8 @@ node.override['rs-mysql']['bind_network_interface'] = 'private'
 Chef::Log.info "Overriding rs-mysql/backup/lineage to 'lamp-lineage'"
 node.override['rs-mysql']['backup']['lineage'] = 'lamp-lineage'
 
-Chef::Log.info "Overriding mysql/bind_address to 'localhost'"
-node.override['mysql']['bind_address'] = 'localhost'
+Chef::Log.info "Overriding rs-mysql/bind_address to 'localhost'"
+node.override['rs-mysql']['bind_address'] = 'localhost'
 
 Chef::Log.info "Overriding rs-application_php/database/host to 'localhost'"
 node.override['rs-application_php']['database']['host'] = 'localhost'
