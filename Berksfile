@@ -8,6 +8,7 @@ cookbook 'rs-mysql', github: 'rightscale-cookbooks/rs-mysql'
 cookbook 'rs-application_php', github: 'rightscale-cookbooks/rs-application_php'
 cookbook 'application_php', github: 'arangamani-cookbooks/application_php', branch: 'template_fix_and_application_cookbook_upgrade'
 cookbook 'dns', github: 'lopakadelp/dns', branch: 'rightscale_development_v2'
+cookbook 'database', github: 'douglaswth-cookbooks/database', branch: 'rs-fixes'
 
 group :integration do
   cookbook 'apt', '~> 2.3.0'

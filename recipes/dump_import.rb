@@ -30,14 +30,36 @@ if dump_file && !dump_file.empty?
   if ::File.exists?(touch_file)
     log "The dump file was already imported at #{::File.ctime(touch_file)}"
   else
-    case dump_file
-    when /\.gz$/
-      uncompress_command = "gunzip --stdout '#{dump_file}'"
-    when /\.bz2$/
-      uncompress_command = "bunzip2 --stdout '#{dump_file}'"
-    when /\.xz$/
-      uncompress_command = "xz --decompress --stdout '#{dump_file}'"
+    # Make sure directory /var/lib/rightscale exists which will contain the touch file
+    directory '/var/lib/rightscale' do
+      mode 0755
+      recursive true
+      action :create
     end
+
+    # Prepare for creating the touch file after dump has been imported. Once the touch file has
+    # been created importing will be skipped if the recipe runs again with the same dump_file name.
+    file touch_file do
+      action :nothing
+    end
+
+    # Install supported file-compression packages
+    ['gzip', 'bzip2', platform_family?("debian") ? 'xz-utils' : 'xz'].each do |package_name|
+      package package_name
+    end
+
+    # Determine by filename extension the command to read in the dump file
+    read_command =
+      case dump_file
+      when /\.gz$/
+        "gunzip --stdout '#{dump_file}'"
+      when /\.bz2$/
+        "bunzip2 --stdout '#{dump_file}'"
+      when /\.xz$/
+        "xz --decompress --stdout '#{dump_file}'"
+      else
+        "cat '#{dump_file}'"
+      end
 
     # The connection hash to use to connect to MySQL
     mysql_connection_info = {
@@ -50,27 +72,13 @@ if dump_file && !dump_file.empty?
     mysql_database node['rs-mysql']['application_database_name'] do
       connection mysql_connection_info
       sql do
-        if uncompress_command
-          uncompress = Mixlib::ShellOut.new(uncompress_command).run_command
-          uncompress.error!
-          uncompress.stdout
-        else
-          ::File.read(dump_file)
-        end
+        streaming_file = Mixlib::ShellOut.new(read_command).run_command
+        streaming_file.error!
+        streaming_file.stdout
       end
       action :query
+      notifies :touch, "file[#{touch_file}]", :immediately
     end
 
-    # Make sure directory /var/lib/rightscale exists which will contain the touch file
-    directory '/var/lib/rightscale' do
-      mode 0755
-      action :create
-    end
-
-    # Create a touch file containing the name of the dump file so this action can be skipped if the
-    # recipe is run with the same input multiple times.
-    file touch_file do
-      action :touch
-    end
   end
 end
