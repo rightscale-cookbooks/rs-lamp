@@ -20,10 +20,10 @@ Github Repository: [https://github.com/rightscale-cookbooks/rs-lamp](https://git
 # Usage
 
 To setup an all-in-one LAMP server, place the `rs-lamp::default` in the runlist. This recipe will simply setup
-some attributes of `rs-mysql` and `rs-application_php` cookbooks. So the runlist must include `rs-mysql::server`
+some attributes of `rs-mysql` and `rs-application_php` cookbooks. So the runlist must include `rs-mysql::default`
 and `rs-application_php::default` recipes in that order.
 
-Example runlist: `["rs-lamp::default", "rs-mysql::server", "rs-application_php::default"]`
+Example runlist: `["rs-lamp::default", "rs-mysql::default", "rs-application_php::default"]`
 
 To import a MySQL database dump after the setup, place the `rs-lamp::dump_import` recipe in the runlist after the recipes
 mentioned above and set the `rs-lamp/dump_file` input. This input should be the location of the dump file relative
@@ -39,7 +39,7 @@ to the root of the repository.
 ## `rs-lamp::default`
 
 This recipe simply sets up some attributes of `rs-mysql` and `rs-application_php` cookbooks to setup an all-in-one
-LAMP server. These attributes will be used by `rs-mysql::server` and `rs-application_php::default` recipes.
+LAMP server. These attributes will be used by `rs-mysql::default` and `rs-application_php::default` recipes.
 
 ## `rs-lamp::dump_import`
 
