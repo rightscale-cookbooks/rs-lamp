@@ -1,6 +1,10 @@
 # rs-lamp cookbook
 
-[![Build Status](https://travis-ci.org/rightscale-cookbooks/rs-lamp.png?branch=master)](https://travis-ci.org/rightscale-cookbooks/rs-lamp)
+[![Release](https://img.shields.io/github/release/rightscale-cookbooks/rs-lamp.svg?style=flat)][release]
+[![Build Status](https://img.shields.io/travis/rightscale-cookbooks/rs-lamp.svg?style=flat)][travis]
+
+[release]: https://github.com/rightscale-cookbooks/rs-lamp/releases/latest
+[travis]: https://travis-ci.org/rightscale-cookbooks/rs-lamp
 
 Sets up an all-in-one LAMP server with Apache with PHP using MySQL database.
 
