@@ -12,7 +12,6 @@ cookbook 'database', github: 'douglaswth-cookbooks/database', branch: 'rs-fixes'
 
 group :integration do
   cookbook 'apt', '~> 2.3.0'
-  cookbook 'yum', '~> 2.4.2'
   cookbook 'yum-epel', '~> 0.4.0'
   cookbook 'curl', '~> 1.1.0'
   cookbook 'rhsm', github: 'rightscale-cookbooks/rhsm', branch: 'st_14_13_acu173881_compile_time_execute_and_enable_repos'
