@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 mysql_name = ''
-case backend.check_os[:family]
-when 'Ubuntu'
+case os[:family]
+when 'ubuntu'
   mysql_name = 'mysql'
-when 'RedHat'
+when 'redhat'
   mysql_name = 'mysqld'
 end
 
