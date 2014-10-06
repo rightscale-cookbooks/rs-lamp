@@ -22,10 +22,10 @@ describe "can run queries on the server via mysql cli" do
   describe command(
     "echo \"SHOW DATABASES LIKE 'app_test'\" | mysql --user=root --password=rootpass"
   ) do
-    it { should return_stdout /app_test/ }
+    its(:stdout) { should match /app_test/ }
   end
 end
 
 describe command('curl --silent --location http://localhost/dbread') do
-  it { should return_stdout /I am in the db/ }
+  its(:stdout) { should match /I am in the db/ }
 end
