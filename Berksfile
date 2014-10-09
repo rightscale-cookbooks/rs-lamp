@@ -8,7 +8,7 @@ cookbook 'rs-mysql', github: 'rightscale-cookbooks/rs-mysql', branch: 'st_14_13_
 cookbook 'rs-application_php', github: 'rightscale-cookbooks/rs-application_php', branch: 'st_14_13_acu173881_update_new_os'
 cookbook 'application_php', github: 'rightscale-cookbooks-contrib/application_php', branch: 'template_fix_and_application_cookbook_upgrade'
 cookbook 'dns', github: 'rightscale-cookbooks-contrib/dns', branch: 'rightscale_development_v2'
-cookbook 'database', github: 'douglaswth-cookbooks/database', branch: 'rs-fixes'
+cookbook 'database', github: 'rightscale-cookbooks-contrib/database', branch: 'rs-fixes'
 
 group :integration do
   cookbook 'apt', '~> 2.3.0'
