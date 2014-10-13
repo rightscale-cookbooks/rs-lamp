@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 mysql_name = ''
-case backend.check_os[:family]
-when 'Ubuntu'
+case os[:family]
+when 'ubuntu'
   mysql_name = 'mysql'
-when 'RedHat'
+when 'redhat'
   mysql_name = 'mysqld'
 end
 
@@ -45,7 +45,7 @@ describe "can run queries on the server via mysql cli" do
   describe command(
     "echo \"SHOW DATABASES LIKE 'app_test'\" | mysql --user=root --password=rootpass"
   ) do
-    it { should return_stdout /app_test/ }
+    its(:stdout) { should match /app_test/ }
   end
 end
 
@@ -62,11 +62,11 @@ describe port(80) do
 end
 
 describe command('curl --silent --location http://localhost') do
-  it { should return_stdout /Basic html serving succeeded/ }
+  its(:stdout) { should match /Basic html serving succeeded/ }
 end
 
 describe command('curl --silent --location http://localhost/appserver') do
-  it { should return_stdout /PHP configuration=succeeded/ }
+  its(:stdout) { should match /PHP configuration=succeeded/ }
 end
 
 describe 'Database configuration file is created with correct settings' do
@@ -83,7 +83,7 @@ describe 'Database configuration file is created with correct settings' do
 end
 
 describe command('curl --silent --location http://localhost/dbread') do
-  it { should return_stdout /I am in the db/ }
+  its(:stdout) { should match /I am in the db/ }
 end
 
 describe file("/var/lib/rightscale/rs-lamp-app_test.sql.touch") do
